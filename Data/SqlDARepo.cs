@@ -19,7 +19,7 @@ namespace DevAssignment.Data
 
         public IEnumerable<BlogPost> GetBlogPosts()
         {
-            return _context.BlogPosts.ToList();
+            return _context.BlogPosts.ToList().OrderByDescending(b => b.CreatedAt);
         }
     }
 }
