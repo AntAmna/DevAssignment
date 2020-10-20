@@ -23,5 +23,13 @@ namespace DevAssignment.Controllers
             var blogPosts = _repository.GetBlogPosts();
             return Ok(blogPosts);
         }
+
+        //GET /api/posts/:slug
+        [HttpGet("{slug}")]
+        public ActionResult<BlogPost> GetBlogPost(string slug)
+        {
+            var blogPost = _repository.GetBlogPostBySlug(slug);
+            return Ok(blogPost);
+        }
     }
 }
