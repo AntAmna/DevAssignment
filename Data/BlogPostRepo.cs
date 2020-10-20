@@ -1,8 +1,6 @@
 ﻿using DevAssignment.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevAssignment.Data
 {
@@ -18,7 +16,6 @@ namespace DevAssignment.Data
                     Title = "Augmented Reality iOS Applicaton",
                     Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
                     Body = "The app is simple to use, and will help you decide on your best furniture fit.",
-                    TagList = new string[] {"iOS", "AR"},
                     CreatedAt = new DateTime(2018, 05, 18, 03, 22, 56),
                     UpdatedAt = new DateTime(2018, 05, 18, 03, 48, 35)
                 },
@@ -28,7 +25,6 @@ namespace DevAssignment.Data
                     Title = "Augmented Reality iOS Applicaton 2",
                     Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
                     Body = "The app is simple to use, and will help you decide on your best furniture fit.",
-                    TagList = new string[] {"iOS", "AR"},
                     CreatedAt = new DateTime(2018, 05, 18, 03, 22, 56),
                     UpdatedAt = new DateTime(2018, 05, 18, 03, 48, 35)
                 }
@@ -53,7 +49,6 @@ namespace DevAssignment.Data
                     Title = "Augmented Reality iOS Applicaton",
                     Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
                     Body = "The app is simple to use, and will help you decide on your best furniture fit.",
-                    TagList = new string[] {"iOS", "AR"},
                     CreatedAt = new DateTime(2018, 05, 18, 03, 22, 56),
                     UpdatedAt = new DateTime(2018, 05, 18, 03, 48, 35)
                 },
@@ -63,11 +58,11 @@ namespace DevAssignment.Data
                     Title = "Augmented Reality iOS Applicaton 2",
                     Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
                     Body = "The app is simple to use, and will help you decide on your best furniture fit.",
-                    TagList = new string[] {"iOS", "AR"},
                     CreatedAt = new DateTime(2018, 05, 18, 03, 22, 56),
                     UpdatedAt = new DateTime(2018, 05, 18, 03, 48, 35)
                 }
             };
+            
             return posts;
         }
 

@@ -118,3 +118,4 @@ C:\Users\User\Projects\DevAssignment\DevAssignment\obj\Debug\netcoreapp3.1\stati
 C:\Users\User\Projects\DevAssignment\DevAssignment\obj\Debug\netcoreapp3.1\DevAssignment.dll
 C:\Users\User\Projects\DevAssignment\DevAssignment\obj\Debug\netcoreapp3.1\DevAssignment.pdb
 C:\Users\User\Projects\DevAssignment\DevAssignment\obj\Debug\netcoreapp3.1\DevAssignment.genruntimeconfig.cache
+C:\Users\User\Projects\DevAssignment\DevAssignment\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

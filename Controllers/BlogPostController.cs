@@ -18,7 +18,7 @@ namespace DevAssignment.Controllers
 
         //GET /api/posts
         [HttpGet]
-        public ActionResult<IEnumerable<BlogPost>> GetAllBlogPosts()
+        public ActionResult<IEnumerable<BlogPost>> GetBlogPosts()
         {
             var blogPosts = _repository.GetBlogPosts();
             return Ok(blogPosts);
@@ -26,7 +26,7 @@ namespace DevAssignment.Controllers
 
         //GET /api/posts/:slug
         [HttpGet("{slug}")]
-        public ActionResult<BlogPost> GetBlogPost(string slug)
+        public ActionResult<BlogPost> GetBlogPostBySlug(string slug)
         {
             var blogPost = _repository.GetBlogPostBySlug(slug);
             return Ok(blogPost);
