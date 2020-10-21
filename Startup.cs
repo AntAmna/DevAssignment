@@ -23,7 +23,8 @@ namespace DevAssignment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BlogPostContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevAssignmentConnection")));
-            services.AddScoped<IBlogPost, SqlDARepo>();
+            services.AddScoped<IBlogPost, SqlBPRepo>();
+            services.AddScoped<ITag, SqlTagRepo>();
             services.AddControllers();
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

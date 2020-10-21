@@ -10,6 +10,7 @@ namespace DevAssignment.Data
 
         }
         public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<Tag> Tag { get; set; }
     }
 
 }

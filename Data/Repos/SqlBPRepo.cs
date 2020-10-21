@@ -1,14 +1,14 @@
 ﻿using DevAssignment.Models;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DevAssignment.Data
 {
-    public class SqlDARepo : IBlogPost
+    public class SqlBPRepo : IBlogPost
     {
         private readonly BlogPostContext _context;
-        public SqlDARepo(BlogPostContext context)
+        public SqlBPRepo(BlogPostContext context)
         {
             _context = context;
         }

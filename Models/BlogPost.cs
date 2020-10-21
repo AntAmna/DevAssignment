@@ -16,7 +16,6 @@ namespace DevAssignment.Models
         public DateTime UpdatedAt { get; set; }
 
         public ICollection<BlogPostTag> BlogPostTags { get; set; }
-    
     }
 }
 

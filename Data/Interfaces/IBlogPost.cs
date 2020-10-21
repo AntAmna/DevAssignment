@@ -7,5 +7,6 @@ namespace DevAssignment.Data
     {
         IEnumerable<BlogPost> GetBlogPosts();
         BlogPost GetBlogPostBySlug(string slug);
+        //BlogPost RemoveBlogPost(string slug);
     }
 }
