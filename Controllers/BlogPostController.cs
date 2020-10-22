@@ -91,7 +91,7 @@ namespace DevAssignment.Controllers
                 BlogPost blogPostToUpdate = _repository.GetBlogPostBySlug(slug);
                 if (blogPostToUpdate == null)
                 {
-                    return BadRequest();
+                    return BadRequest("Blog Post does not exist!");
                 }
 
                 if (blogPost.Title != null)
