@@ -10,6 +10,6 @@ namespace DevAssignment.Data
         BlogPost GetBlogPostBySlug(string slug);
         void CreateBlogPost(BlogPost blogPost);
         void UpdateBlogPost(BlogPost blogPost);
-        //void RemoveBlogPost(string slug);
+        void DeleteBlogPost(BlogPost blogPost);
     }
 }

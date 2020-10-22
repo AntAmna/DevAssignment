@@ -41,6 +41,17 @@ namespace DevAssignment.Controllers
         }
 
         //DELETE /api/posts/:slug
+        [HttpDelete("{slug}")]
+       public ActionResult DeleteBlogPost(string slug)
+       {
+            BlogPost blogPost = _repository.GetBlogPostBySlug(slug);
+            if (blogPost != null)
+            {
+                _repository.DeleteBlogPost(blogPost);
+                return NoContent();
+            }
+            return NotFound();
+       }
 
         //POST /api/posts
         [HttpPost]

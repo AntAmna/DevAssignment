@@ -35,5 +35,10 @@ namespace DevAssignment.Data
             _context.Update(blogPost);
             _context.SaveChanges();
         }
+        public void DeleteBlogPost(BlogPost blogPost)
+        {
+            _context.Remove(blogPost);
+            _context.SaveChanges();
+        }
     }
 }
