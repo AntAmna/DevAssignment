@@ -9,6 +9,7 @@ namespace DevAssignment.Data
         IEnumerable<BlogPost> GetBlogPosts();
         BlogPost GetBlogPostBySlug(string slug);
         void CreateBlogPost(BlogPost blogPost);
+        void UpdateBlogPost(BlogPost blogPost);
         //void RemoveBlogPost(string slug);
     }
 }

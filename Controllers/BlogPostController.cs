@@ -64,11 +64,46 @@ namespace DevAssignment.Controllers
                 bp.UpdatedAt = date;
                 _repository.CreateBlogPost(bp);
                 return Ok(bp);
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-            }    
+            }
+        }
+
+        //PUT /api/posts/:slug
+        [HttpPut("{slug}")]
+        public ActionResult UpdateBlogPost(string slug, BlogPost blogPost)
+        {
+            BlogPost blogPostToUpdate = _repository.GetBlogPostBySlug(slug);
+            if (blogPostToUpdate != null)
+            {
+                if (blogPostToUpdate == null)
+                {
+                    return NoContent();
+                }
+
+                if (blogPost.Title != null)
+                {
+                    blogPostToUpdate.Title = blogPost.Title;
+                }
+                if (blogPost.Description != null)
+                {
+                    blogPostToUpdate.Description = blogPost.Description;
+                }
+                if (blogPost.Body != null)
+                {
+                    blogPostToUpdate.Body = blogPost.Body;
+                }
+                DateTime updatedDate = DateTime.Now;
+                blogPostToUpdate.UpdatedAt = updatedDate;
+                _repository.UpdateBlogPost(blogPostToUpdate);
+                return Ok(blogPostToUpdate);
+            }
+
+            return NotFound();
+
+            
         }
     }
 }

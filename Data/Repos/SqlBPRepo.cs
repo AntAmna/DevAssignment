@@ -29,5 +29,11 @@ namespace DevAssignment.Data
             _context.BlogPosts.Add(blogPost);
             _context.SaveChanges();
         }
+
+        public void UpdateBlogPost(BlogPost blogPost)
+        {
+            _context.Update(blogPost);
+            _context.SaveChanges();
+        }
     }
 }
