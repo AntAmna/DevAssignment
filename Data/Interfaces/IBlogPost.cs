@@ -1,4 +1,5 @@
 ﻿using DevAssignment.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DevAssignment.Data
@@ -7,6 +8,7 @@ namespace DevAssignment.Data
     {
         IEnumerable<BlogPost> GetBlogPosts();
         BlogPost GetBlogPostBySlug(string slug);
-        //BlogPost RemoveBlogPost(string slug);
+        void CreateBlogPost(BlogPost blogPost);
+        //void RemoveBlogPost(string slug);
     }
 }

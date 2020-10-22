@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevAssignment.Models
 {
@@ -15,7 +16,8 @@ namespace DevAssignment.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public ICollection<BlogPostTag> BlogPostTags { get; set; }
+        //[NotMapped]
+        //public ICollection<Tag> Tags { get; set; }
     }
 }
 

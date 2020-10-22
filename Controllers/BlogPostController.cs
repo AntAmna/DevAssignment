@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using DevAssignment.Data;
 using DevAssignment.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +22,13 @@ namespace DevAssignment.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<BlogPost>> GetBlogPosts()
         {
-            //var blogPosts = _repository.GetBlogPosts();
-            //Console.WriteLine(blogPosts.)
-
             IEnumerable<BlogPost> blogPosts = _repository.GetBlogPosts();
 
-            BlogPostResponse blogPostResponse = new BlogPostResponse();
-            blogPostResponse.BlogPosts = blogPosts;
-            blogPostResponse.CountBP = blogPosts.Count();
+            BlogPostResponse blogPostResponse = new BlogPostResponse
+            {
+                BlogPosts = blogPosts,
+                CountBP = blogPosts.Count()
+            };
             return Ok(blogPostResponse);
         }
 
@@ -44,14 +43,32 @@ namespace DevAssignment.Controllers
         //DELETE /api/posts/:slug
 
         //POST /api/posts
-        /*[HttpPost]
-         public async ActionResult<BlogPost> PostBlogPost(BlogPost blogPost)
-         {
-             _context.TodoItems.Add(blogPost);
-             await _context.SaveChangesAsync();
+        [HttpPost]
+        public ActionResult CreateBlogPost(BlogPost bp)
+        {
+            try
+            {
+                string slug = bp.Title.ToLower();
+                slug = Regex.Replace(slug, @"[^a-z0-9\s]", "-");
+                slug = Regex.Replace(slug, @"\s+", " ").Trim();
+                slug = Regex.Replace(slug, @"\s", "-");
+                BlogPost existingBlogPost = _repository.GetBlogPostBySlug(slug);
+                DateTime date = DateTime.Now;
 
-             //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-             //return CreatedAtAction(nameof(GetBlogPostBySlug), new { slug = blogPost. }, blogPost);
-         }*/
+                if (existingBlogPost != null)
+                {
+                    return BadRequest();
+                }
+                bp.Slug = slug;
+                bp.CreatedAt = date;
+                bp.UpdatedAt = date;
+                _repository.CreateBlogPost(bp);
+                return Ok(bp);
+            } 
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }    
+        }
     }
 }

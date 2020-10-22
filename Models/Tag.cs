@@ -11,6 +11,6 @@ namespace DevAssignment.Models
         [Required]
         public string TagName { get; set; } 
 
-        public ICollection<BlogPostTag> BlogPostTags { get; set; }
+        //public ICollection<BlogPost> BlogPosts { get; set; }
     }
 }

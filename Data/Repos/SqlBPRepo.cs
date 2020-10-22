@@ -1,7 +1,9 @@
 ﻿using DevAssignment.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace DevAssignment.Data
 {
@@ -20,6 +22,12 @@ namespace DevAssignment.Data
         public IEnumerable<BlogPost> GetBlogPosts()
         {
             return _context.BlogPosts.ToList().OrderByDescending(b => b.CreatedAt);
+        }
+
+        public void CreateBlogPost(BlogPost blogPost)
+        {
+            _context.BlogPosts.Add(blogPost);
+            _context.SaveChanges();
         }
     }
 }
