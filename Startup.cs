@@ -24,7 +24,8 @@ namespace DevAssignment
         {
             services.AddDbContext<BlogPostContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevAssignmentConnection")));
             services.AddScoped<IBlogPost, SqlBPRepo>();
-            //services.AddScoped<ITag, SqlTagRepo>();
+            services.AddScoped<ITag, SqlTagRepo>();
+            //services.AddScoped<IBlogPostTag, SqlTagRepo>();
             services.AddControllers();
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

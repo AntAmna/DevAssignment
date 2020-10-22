@@ -19,7 +19,7 @@ namespace DevAssignment.Controllers
 
         //GET /api/tags
         [HttpGet]
-        public ActionResult<IEnumerable<Tag>> GetBlogPosts()
+        public ActionResult<IEnumerable<Tag>> GetTags()
         {
             var tags = _repository.GetTags();
             return Ok(tags);

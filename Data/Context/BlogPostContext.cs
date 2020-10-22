@@ -1,5 +1,6 @@
 ﻿using DevAssignment.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace DevAssignment.Data
 {
@@ -10,7 +11,8 @@ namespace DevAssignment.Data
 
         }
         public DbSet<BlogPost> BlogPosts { get; set; }
-        //public DbSet<Tag> Tag { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BlogPostTag> BlogPostTags { get; set; }
     }
 
 }
