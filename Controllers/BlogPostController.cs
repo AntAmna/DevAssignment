@@ -48,7 +48,7 @@ namespace DevAssignment.Controllers
             if (blogPost != null)
             {
                 _repository.DeleteBlogPost(blogPost);
-                return NoContent();
+                return Ok(blogPost);
             }
             return NotFound();
        }
@@ -86,12 +86,12 @@ namespace DevAssignment.Controllers
         [HttpPut("{slug}")]
         public ActionResult UpdateBlogPost(string slug, BlogPost blogPost)
         {
-            BlogPost blogPostToUpdate = _repository.GetBlogPostBySlug(slug);
-            if (blogPostToUpdate != null)
+            try
             {
+                BlogPost blogPostToUpdate = _repository.GetBlogPostBySlug(slug);
                 if (blogPostToUpdate == null)
                 {
-                    return NoContent();
+                    return BadRequest();
                 }
 
                 if (blogPost.Title != null)
@@ -111,8 +111,10 @@ namespace DevAssignment.Controllers
                 _repository.UpdateBlogPost(blogPostToUpdate);
                 return Ok(blogPostToUpdate);
             }
-
-            return NotFound();
+            catch(Exception ex)
+            {
+                 return StatusCode(500, ex.Message);
+            }
 
             
         }
