@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevAssignment.Migrations
 {
     [DbContext(typeof(BlogPostContext))]
-    [Migration("20201022142110_Initial")]
-    partial class Initial
+    [Migration("20201023105903_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,8 +23,10 @@ namespace DevAssignment.Migrations
 
             modelBuilder.Entity("DevAssignment.Models.BlogPost", b =>
                 {
-                    b.Property<string>("Slug")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("BlogPostId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
@@ -35,6 +37,9 @@ namespace DevAssignment.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -42,27 +47,20 @@ namespace DevAssignment.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Slug");
+                    b.HasKey("BlogPostId");
 
                     b.ToTable("BlogPosts");
                 });
 
             modelBuilder.Entity("DevAssignment.Models.BlogPostTag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BlogPostSlug")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("BlogPostId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogPostSlug");
+                    b.HasKey("BlogPostId", "TagId");
 
                     b.HasIndex("TagId");
 
@@ -71,7 +69,7 @@ namespace DevAssignment.Migrations
 
             modelBuilder.Entity("DevAssignment.Models.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TagId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -80,7 +78,7 @@ namespace DevAssignment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("TagId");
 
                     b.ToTable("Tags");
                 });
@@ -88,11 +86,13 @@ namespace DevAssignment.Migrations
             modelBuilder.Entity("DevAssignment.Models.BlogPostTag", b =>
                 {
                     b.HasOne("DevAssignment.Models.BlogPost", "BlogPost")
-                        .WithMany("TagList")
-                        .HasForeignKey("BlogPostSlug");
+                        .WithMany("BlogPostTags")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DevAssignment.Models.Tag", "Tag")
-                        .WithMany("BlogPosts")
+                        .WithMany("BlogPostTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

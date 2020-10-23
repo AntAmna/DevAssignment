@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevAssignment.Models
 {
     public class BlogPost
     {
-        [Key]
+        public int BlogPostId { get; set; }
         public string Slug { get; set; }
         [Required]
         public string Title { get; set; }
@@ -16,7 +15,7 @@ namespace DevAssignment.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public ICollection<Tag> TagList { get; set; }
+        public virtual ICollection<BlogPostTag> BlogPostTags { get; set; }
     }
 }
 

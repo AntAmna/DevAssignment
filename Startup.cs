@@ -25,8 +25,10 @@ namespace DevAssignment
             services.AddDbContext<BlogPostContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevAssignmentConnection")));
             services.AddScoped<IBlogPost, SqlBPRepo>();
             services.AddScoped<ITag, SqlTagRepo>();
-            //services.AddScoped<IBlogPostTag, SqlTagRepo>();
             services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

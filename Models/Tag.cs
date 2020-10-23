@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevAssignment.Models
 {
     public class Tag
     {
-        [Key]
-        public int Id { get; set; }
+        public int TagId { get; set; }
         [Required]
         public string TagName { get; set; } 
 
-        public ICollection<BlogPostTag> BlogPosts { get; set; }
+        public virtual ICollection<BlogPostTag> BlogPostTags { get; set; }
     }
 }

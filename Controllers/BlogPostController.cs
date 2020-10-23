@@ -96,6 +96,16 @@ namespace DevAssignment.Controllers
 
                 if (blogPost.Title != null)
                 {
+                    slug = blogPost.Title.ToLower();
+                    slug = Regex.Replace(slug, @"[^a-z0-9\s]", "-");
+                    slug = Regex.Replace(slug, @"\s+", " ").Trim();
+                    slug = Regex.Replace(slug, @"\s", "-");
+                    BlogPost blogPostCheck = _repository.GetBlogPostBySlug(slug);
+                    if (blogPostCheck != null)
+                    {
+                        return BadRequest("Blog post with this title already exists! Please change the name of the title");
+                    }
+                    blogPostToUpdate.Slug = slug;
                     blogPostToUpdate.Title = blogPost.Title;
                 }
                 if (blogPost.Description != null)
