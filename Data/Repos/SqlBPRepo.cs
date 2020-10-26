@@ -29,7 +29,18 @@ namespace DevAssignment.Data
                 return _context.BlogPosts.OrderByDescending(b => b.CreatedAt).Include(b => b.BlogPostTags).ThenInclude(tag => tag.Tag).Where(bp => bp.BlogPostTags.Any(t => t.Tag.TagName == tagFilter)).ToList();
             }
             return _context.BlogPosts.OrderByDescending(b => b.CreatedAt).Include(blogPost => blogPost.BlogPostTags).ThenInclude(blogPostTags => blogPostTags.Tag).ToList();
-
+            //var blogPosts = _context.BlogPosts.OrderByDescending(b => b.CreatedAt).Select(bpt => new BPTResponse
+            //{
+            //    BlogPostId = bpt.BlogPostId,
+            //    Slug = bpt.Slug,
+            //    Title = bpt.Title,
+            //    Description = bpt.Description,
+            //    Body = bpt.Body,
+            //    CreatedAt = bpt.CreatedAt,
+            //    UpdatedAt = bpt.UpdatedAt,
+            //    Tags = bpt.BlogPostTags.Select(t => t.Tag).ToList()
+            //}).ToList();
+            //return (IEnumerable<BlogPost>) blogPosts;
         }
 
         public void CreateBlogPost(BlogPost blogPost)
