@@ -6,7 +6,7 @@ namespace DevAssignment.Data
 {
     public interface IBlogPost
     {
-        IEnumerable<BlogPost> GetBlogPosts();
+        IEnumerable<BlogPost> GetBlogPosts(string tagName = "");
         BlogPost GetBlogPostBySlug(string slug);
         void CreateBlogPost(BlogPost blogPost);
         void UpdateBlogPost(BlogPost blogPost);

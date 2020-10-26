@@ -20,10 +20,15 @@ namespace DevAssignment.Controllers
 
         //GET /api/posts
         [HttpGet]
-        public ActionResult<IEnumerable<BlogPost>> GetBlogPosts()
+        public ActionResult<IEnumerable<BlogPost>> GetBlogPosts(string tagName)
         {
-            IEnumerable<BlogPost> blogPosts = _repository.GetBlogPosts();
-
+            IEnumerable<BlogPost> blogPosts;
+            if (tagName != null && tagName != "")
+            {
+                blogPosts = _repository.GetBlogPosts(tagName);
+                return Ok(blogPosts);
+            }
+            blogPosts = _repository.GetBlogPosts();
             BlogPostResponse blogPostResponse = new BlogPostResponse
             {
                 BlogPosts = blogPosts,

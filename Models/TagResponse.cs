@@ -3,6 +3,6 @@ namespace DevAssignment.Models
 {
     public class TagResponse
     {
-        public string Tag { get; set; }
+        public Tag Tag { get; set; }
     }
 }

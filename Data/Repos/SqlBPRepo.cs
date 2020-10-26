@@ -1,5 +1,6 @@
 ﻿using DevAssignment.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,9 +19,17 @@ namespace DevAssignment.Data
             return _context.BlogPosts.Include(blogPost => blogPost.BlogPostTags).FirstOrDefault(p => p.Slug == slug);
         }
 
-        public IEnumerable<BlogPost> GetBlogPosts()
+        public IEnumerable<BlogPost> GetBlogPosts(string tagFilter = "")
         {
+            //return _context.BlogPosts.OrderByDescending(b => b.CreatedAt).Include(blogPost => {
+            //blogPost.BlogPostTags.Select(tag => tag.Tag.TagName)).ToList();
+
+            if (tagFilter != "" && tagFilter != null)
+            {
+                return _context.BlogPosts.OrderByDescending(b => b.CreatedAt).Include(b => b.BlogPostTags).ThenInclude(tag => tag.Tag).Where(bp => bp.BlogPostTags.Any(t => t.Tag.TagName == tagFilter)).ToList();
+            }
             return _context.BlogPosts.OrderByDescending(b => b.CreatedAt).Include(blogPost => blogPost.BlogPostTags).ThenInclude(blogPostTags => blogPostTags.Tag).ToList();
+
         }
 
         public void CreateBlogPost(BlogPost blogPost)
